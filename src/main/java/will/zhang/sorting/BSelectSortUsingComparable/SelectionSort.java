@@ -2,6 +2,11 @@ package will.zhang.sorting.BSelectSortUsingComparable;
 
 import java.util.Arrays;
 
+/**
+ * 对选择排序所做的一个更改
+ * 凡是实现了Comparable接口的类
+ * 都可以排序
+ */
 public class SelectionSort {
 
     /**
