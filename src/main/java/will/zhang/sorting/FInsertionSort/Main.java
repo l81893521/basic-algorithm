@@ -30,10 +30,11 @@ public class Main {
         Integer[] arra1 = SortTestHelper.generateNearlyOrderedArray(N, 5);
         Integer[] arra2 = Arrays.copyOf(arra1, arra1.length);
         Integer[] arra3 = Arrays.copyOf(arra1, arra1.length);
+        Integer[] arra4 = Arrays.copyOf(arra1, arra1.length);
 
         SortTestHelper.testSortPerformance("will.zhang.sorting.FInsertionSort.SelectionSort", arra1);
         SortTestHelper.testSortPerformance("will.zhang.sorting.FInsertionSort.InsertionSort", arra2);
         SortTestHelper.testSortPerformance("will.zhang.sorting.FInsertionSort.BubbleSort", arra3);
-
+        SortTestHelper.testSortPerformance("will.zhang.sorting.FInsertionSort.BubbleSort2", arra4);
     }
 }
