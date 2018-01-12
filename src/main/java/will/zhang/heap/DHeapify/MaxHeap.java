@@ -1,4 +1,4 @@
-package will.zhang.heap.CShiftDown;
+package will.zhang.heap.DHeapify;
 
 import will.zhang.util.SortTestHelper;
 
@@ -30,6 +30,24 @@ public class MaxHeap<T extends Comparable> {
         data = (T[]) new Comparable[capacity + 1];
         this.count = 0;
         this.capacity = capacity;
+    }
+
+    /**
+     * 使用heapify的方式创建堆
+     * 时间复杂度为O(n)
+     * @param arr
+     */
+    public MaxHeap(T[] arr){
+        data = (T[]) new Comparable[arr.length + 1];
+        this.capacity = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            data[i+1] = arr[i];
+            count++;
+        }
+
+        for (int i = arr.length / 2; i >= 1; i--) {
+            shiftDown(i);
+        }
     }
 
     /**
