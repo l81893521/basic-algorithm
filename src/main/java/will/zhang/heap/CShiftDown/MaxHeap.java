@@ -1,4 +1,4 @@
-package will.zhang.heap.BShiftUp;
+package will.zhang.heap.CShiftDown;
 
 import will.zhang.util.SortTestHelper;
 
@@ -62,6 +62,18 @@ public class MaxHeap<T extends Comparable> {
     }
 
     /**
+     * 取出堆中的最大值（树顶）
+     * @return
+     */
+    public T extractMax(){
+        T result = data[1];
+        SortTestHelper.swap(data, 1, count);
+        count--;
+        shiftDown(1);
+        return result;
+    }
+
+    /**
      * 最大堆核心辅助函数
      * 把元素调整到合适的位置
      * @param k
@@ -74,6 +86,32 @@ public class MaxHeap<T extends Comparable> {
         }
     }
 
+    /**
+     * 最大堆核心辅助函数
+     * 把元素调整到合适的位置
+     * @param k
+     */
+    private void shiftDown(int k){
+
+        while(k * 2 <= count){
+            //j是需要交换的位置,先假设左节点较大(leftChild=k*2)
+            int j = k * 2;
+            if(j + 1 <=count && data[j].compareTo(data[j+1]) < 0){
+                //如果右节点较大，则j=右节点(rightChild=k*2+1)
+                j++;
+            }
+            //上面的判断已经得出2个子节点中较大的那一个,如果还是比父节点小，则无需交换
+            if(data[k].compareTo(data[j]) > 0){
+                break;
+            }
+            SortTestHelper.swap(data, k, j);
+            //改变k的位置，继续往下对比
+            k = j;
+        }
+
+
+    }
+
 
     public static void main(String[] args) {
         int capacity = 10;
@@ -83,6 +121,10 @@ public class MaxHeap<T extends Comparable> {
 
         for (int i = 0; i < capacity; i++) {
             maxHeap.insert(new Integer((int)(Math.random() * M)));
+        }
+
+        while (!maxHeap.isEmpty()){
+            System.out.println(maxHeap.extractMax());
         }
     }
 }

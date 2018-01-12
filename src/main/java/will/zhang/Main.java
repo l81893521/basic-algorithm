@@ -13,7 +13,7 @@ public class Main {
         /*
         随机范围生成指定大小数组
          */
-        int N = 20000;
+        int N = 200000;
         System.out.println("Test for random array, size = " + N + " , random range [0, " + N + "]");
 
         Integer[] arr1 = SortTestHelper.generateRandomArray(N, 0, N);
