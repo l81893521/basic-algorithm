@@ -26,6 +26,7 @@ public class Main {
         SortTestHelper.testSortPerformance("will.zhang.advance.AMergeSort.MergeSort", arr1);
         SortTestHelper.testSortPerformance("will.zhang.heap.DHeapify.HeapSort", arr2);
         SortTestHelper.testSortPerformance("will.zhang.heap.DHeapify.HeapSort2", arr3);
+        SortTestHelper.testSortPerformance("will.zhang.heap.EHeapSort.HeapSort3", arr4);
 
         /*
         生成接近于有序的数组
@@ -35,10 +36,12 @@ public class Main {
         arr1 = SortTestHelper.generateNearlyOrderedArray(N, 5);
         arr2 = Arrays.copyOf(arr1, arr1.length);
         arr3 = Arrays.copyOf(arr1, arr1.length);
+        arr4 = Arrays.copyOf(arr1, arr1.length);
 
         SortTestHelper.testSortPerformance("will.zhang.advance.AMergeSort.MergeSort", arr1);
         SortTestHelper.testSortPerformance("will.zhang.heap.DHeapify.HeapSort", arr2);
         SortTestHelper.testSortPerformance("will.zhang.heap.DHeapify.HeapSort2", arr3);
+        SortTestHelper.testSortPerformance("will.zhang.heap.EHeapSort.HeapSort3", arr4);
 
         /*
         测试存在包含大量相同元素的数组
@@ -48,10 +51,12 @@ public class Main {
         arr1 = SortTestHelper.generateRandomArray(N, 0, 10);
         arr2 = Arrays.copyOf(arr1, arr1.length);
         arr3 = Arrays.copyOf(arr1, arr1.length);
+        arr4 = Arrays.copyOf(arr1, arr1.length);
 
         SortTestHelper.testSortPerformance("will.zhang.advance.AMergeSort.MergeSort", arr1);
         SortTestHelper.testSortPerformance("will.zhang.heap.DHeapify.HeapSort", arr2);
         SortTestHelper.testSortPerformance("will.zhang.heap.DHeapify.HeapSort2", arr3);
+        SortTestHelper.testSortPerformance("will.zhang.heap.EHeapSort.HeapSort3", arr4);
 
 
 

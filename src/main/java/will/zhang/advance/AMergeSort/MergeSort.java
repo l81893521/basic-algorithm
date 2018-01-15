@@ -77,7 +77,7 @@ public class MergeSort {
 
 
     public static void main(String[] args) {
-        int N = 1000000;
+        int N = 8;
         Integer[] arr = SortTestHelper.generateRandomArray(N, 0, N);
         // 可以在1秒内轻松处理100万以上的数据
         // 但是不要使用O(n^2)的算法来处理那么大的数据,如SelectionSort, InsertionSort或BubbleSort
