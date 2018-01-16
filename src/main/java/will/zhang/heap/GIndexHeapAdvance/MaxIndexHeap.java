@@ -1,4 +1,4 @@
-package will.zhang.heap.FIndexHeap;
+package will.zhang.heap.GIndexHeapAdvance;
 
 import will.zhang.util.SortTestHelper;
 
@@ -9,13 +9,17 @@ import will.zhang.util.SortTestHelper;
 public class MaxIndexHeap<T extends Comparable> {
 
     /**
-     * 最大索引堆中的数据
+     * 使用数组来实现一个最大堆
      */
     protected T[] data;
     /**
-     * 最大索引堆中的索引
+     * 用于维护数据的索引, indexes[x] = i 表示x号位置是索引i(indexes[1] = 10, 1号位置是索引10) 指的是对data做的索引
      */
     private Integer[] indexes;
+    /**
+     * 最大索引堆的反向索引, reverse[i] = x 表示i号位置是索引x(reverse[10] = 1, 10号位置是索引1) 指的是对index做的索引
+     */
+    private Integer[] reverse;
     /**
      * 堆里面元素的个数
      */
@@ -33,6 +37,10 @@ public class MaxIndexHeap<T extends Comparable> {
         //下标0的位置是弃用的,所以capacity+1
         data = (T[]) new Comparable[capacity + 1];
         indexes = new Integer[capacity + 1];
+        reverse = new Integer[capacity + 1];
+        for (int i = 0; i <= capacity; i++) {
+            reverse[i] = 0;
+        }
         this.count = 0;
         this.capacity = capacity;
     }
@@ -85,6 +93,7 @@ public class MaxIndexHeap<T extends Comparable> {
         //下标0位置是启用的，所以+1
         data[i] = t;
         indexes[count + 1] = i;
+        reverse[i] = count + 1;
         count++;
         //把元素调整到合适的位置（符合最大堆的要求）
         shiftUp(count);
@@ -98,7 +107,8 @@ public class MaxIndexHeap<T extends Comparable> {
         assert count > 0;
 
         T result = data[indexes[1]];
-        SortTestHelper.swap(indexes, 1, count);
+        swapIndexes(1, count);
+        reverse[indexes[count]] = 0;
         count--;
         shiftDown(1);
         return result;
@@ -146,13 +156,20 @@ public class MaxIndexHeap<T extends Comparable> {
         重新维护索引
         找到indexes[j] == i, j表示data[i]在堆中的位置
          */
-        for (int j = 1; j <= count ; j++) {
-            if(indexes[j].compareTo(i) == 0){
-                shiftUp(j);
-                shiftDown(j);
-                return;
-            }
-        }
+//        for (int j = 1; j <= count ; j++) {
+//            if(indexes[j].compareTo(i) == 0){
+//                shiftUp(j);
+//                shiftDown(j);
+//                return;
+//            }
+//        }
+
+        /*
+        增加反向索引优化后
+         */
+        int j =  reverse[i];
+        shiftUp(j);
+        shiftDown(j);
     }
 
     /**
@@ -163,7 +180,7 @@ public class MaxIndexHeap<T extends Comparable> {
     private void shiftUp(int k){
         //和父节点比较，如果小于父节点，则交换
         while (k > 1 && data[indexes[k/2]].compareTo(data[indexes[k]]) < 0){
-            SortTestHelper.swap(indexes, k/2, k);
+            swapIndexes(k/2, k);
             k /= 2;
         }
     }
@@ -186,10 +203,19 @@ public class MaxIndexHeap<T extends Comparable> {
             if(data[indexes[k]].compareTo(data[indexes[j]]) > 0){
                 break;
             }
-            SortTestHelper.swap(indexes, k, j);
+            swapIndexes(k, j);
             //改变k的位置，继续往下对比
             k = j;
         }
+    }
+
+    private void swapIndexes(int i, int j){
+        int t = indexes[i];
+        indexes[i] = indexes[j];
+        indexes[j] = t;
+
+        reverse[indexes[i]] = i;
+        reverse[indexes[j]] = j;
     }
 
 
@@ -199,9 +225,8 @@ public class MaxIndexHeap<T extends Comparable> {
         int M = 100;
         MaxIndexHeap<Integer> maxIndexHeap = new MaxIndexHeap<Integer>(capacity);
 
-        int[] arr = {15, 17, 19, 13, 22, 16, 28, 30, 100, 62};
         for (int i = 0; i < capacity; i++) {
-            maxIndexHeap.insert(i, arr[i]);
+            maxIndexHeap.insert(i, new Integer((int)(Math.random() * M)));
         }
 
         while (!maxIndexHeap.isEmpty()){
