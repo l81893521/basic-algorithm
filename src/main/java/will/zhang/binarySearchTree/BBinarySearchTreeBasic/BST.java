@@ -1,4 +1,4 @@
-package will.zhang.binarySearchTree.BBinaryTreeBasic;
+package will.zhang.binarySearchTree.BBinarySearchTreeBasic;
 
 /**
  * Created by Will.Zhang on 2018/1/17 0017 18:26.
