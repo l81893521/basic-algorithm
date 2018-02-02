@@ -1,4 +1,4 @@
-package will.zhang.graphBasic.AGraphRepresentation;
+package will.zhang.graphBasic.BVertexAdjacentIterator;
 
 import java.util.Vector;
 
@@ -93,5 +93,15 @@ public class SparseGraph {
             }
         }
         return false;
+    }
+
+    /**
+     * 返回图中一个顶点的所有邻边
+     * @param v
+     * @return
+     */
+    public Iterable<Integer> adj(int v){
+        assert v >= 0 && v < n;
+        return g[v];
     }
 }

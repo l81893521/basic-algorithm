@@ -1,4 +1,4 @@
-package will.zhang.graphBasic.AGraphRepresentation;
+package will.zhang.graphBasic.BVertexAdjacentIterator;
 
 import java.util.Vector;
 
@@ -88,5 +88,21 @@ public class DenseGraph {
         assert w >= 0 && w < n;
 
         return g[v][w];
+    }
+
+    /**
+     * 返回图中一个顶点的所有邻边
+     * @param v
+     * @return
+     */
+    public Iterable<Integer> adj(int v){
+        assert v >= 0 && v < n;
+        Vector<Integer> adjV = new Vector<>();
+        for (int i = 0; i < n; i++) {
+            if(g[v][i]){
+                adjV.add(i);
+            }
+        }
+        return adjV;
     }
 }

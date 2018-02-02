@@ -1,4 +1,5 @@
-package will.zhang.graphBasic.AGraphRepresentation;
+package will.zhang.minimumSpanTree.AWeightedGraph;
+
 
 import java.util.Vector;
 
@@ -6,7 +7,7 @@ import java.util.Vector;
  * Created by Will.Zhang on 2018/1/26 0026 18:26.
  * 稀疏图 - 邻接表
  */
-public class SparseGraph {
+public class SparseWeightedGraph<Weight extends Number & Comparable> implements WeightedGraph {
 
     /**
      * 节点数
@@ -26,9 +27,9 @@ public class SparseGraph {
     /**
      * 图的具体数据
      */
-    private Vector<Integer>[] g;
+    private Vector<Edge<Weight>>[] g;
 
-    public SparseGraph(int n, boolean directed) {
+    public SparseWeightedGraph(int n, boolean directed) {
         this.n = n;
         this.m = 0;
         this.directed = directed;
@@ -57,21 +58,20 @@ public class SparseGraph {
 
     /**
      * 向图中添加一个边
-     * @param v
-     * @param w
+     * @param e
      */
-    public void addEdge(int v, int w){
-        assert v > 0 && v < n;
-        assert v > 0 && v < n;
+    public void addEdge(Edge e){
+        assert e.V() > 0 && e.V() < n;
+        assert e.W() > 0 && e.W() < n;
 
-        g[v].add(w);
+        g[e.V()].add(new Edge<>(e));
 
         //这里不判断addEdge的算法复杂度是O(1), 但是hasEdge的算法复杂度是O(n)
         //如果添加了hasEdge的话, addEdge也会变成O(n)
         //v!=w是判断是否自环边,如果相等,那么运行上面g[v].add(w);就足够了
         //并且是否为有向图
-        if(v != w && !directed){
-            g[w].add(v);
+        if(e.V() != e.W() && !directed){
+            g[e.W()].add(new Edge(e.W(), e.V(), e.wt()));
         }
         //图的边数
         m++;
@@ -88,10 +88,32 @@ public class SparseGraph {
         assert v > 0 && v < n;
 
         for (int i = 0; i < g[v].size(); i++) {
-            if(g[v].elementAt(i) == w){
+            if(g[v].elementAt(i).other(v) == w){
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public void show() {
+        for( int i = 0 ; i < n ; i ++ ){
+            System.out.print("vertex " + i + ":\t");
+            for( int j = 0 ; j < g[i].size() ; j ++ ){
+                Edge e = g[i].elementAt(j);
+                System.out.print( "( to:" + e.other(i) + ",wt:" + e.wt() + ")\t");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * 返回图中一个顶点的所有邻边
+     * @param v
+     * @return
+     */
+    public Iterable<Edge<Weight>> adj(int v){
+        assert v >= 0 && v < n;
+        return g[v];
     }
 }

@@ -1,4 +1,4 @@
-package will.zhang.graphBasic.AGraphRepresentation;
+package will.zhang.graphBasic.DDfsAndComponents;
 
 import java.util.Vector;
 
@@ -6,7 +6,7 @@ import java.util.Vector;
  * Created by Will.Zhang on 2018/1/26 0026 18:26.
  * 稀疏图 - 邻接表
  */
-public class SparseGraph {
+public class SparseGraph implements Graph {
 
     /**
      * 节点数
@@ -93,5 +93,25 @@ public class SparseGraph {
             }
         }
         return false;
+    }
+
+    @Override
+    public void show() {
+        for( int i = 0 ; i < n ; i ++ ){
+            System.out.print("vertex " + i + ":\t");
+            for( int j = 0 ; j < g[i].size() ; j ++ )
+                System.out.print(g[i].elementAt(j) + "\t");
+            System.out.println();
+        }
+    }
+
+    /**
+     * 返回图中一个顶点的所有邻边
+     * @param v
+     * @return
+     */
+    public Iterable<Integer> adj(int v){
+        assert v >= 0 && v < n;
+        return g[v];
     }
 }
