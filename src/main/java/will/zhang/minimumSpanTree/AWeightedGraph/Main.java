@@ -6,7 +6,7 @@ package will.zhang.minimumSpanTree.AWeightedGraph;
 public class Main {
 
     public static void main(String[] args) {
-        String filename = will.zhang.graphBasic.FBFSAndShortestPath.Main.class.getClass().getResource("/graph").getPath() + "/testG3.txt";
+        String filename = Main.class.getClass().getResource("/graph").getPath() + "/testG3.txt";
 
         SparseWeightedGraph sparseWeightedGraph = new SparseWeightedGraph(8, false);
         ReadWeightedGraph readWeightedGraph = new ReadWeightedGraph(sparseWeightedGraph, filename);

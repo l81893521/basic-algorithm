@@ -8,7 +8,7 @@ import java.util.Vector;
 public class Main {
 
     public static void main(String[] args) {
-        String filename = will.zhang.graphBasic.FBFSAndShortestPath.Main.class.getClass().getResource("/graph").getPath() + "/testG3.txt";
+        String filename = Main.class.getClass().getResource("/graph").getPath() + "/testG3.txt";
 
         int V = 8;
         //测试最小生成树

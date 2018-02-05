@@ -1,4 +1,4 @@
-package will.zhang.minimumSpanTree.COptimizedPrim;
+package will.zhang.minimumSpanTree.DKruskalAlgorithm;
 
 /**
  * Created by Will.Zhang on 2018/2/2 0002 14:56.
