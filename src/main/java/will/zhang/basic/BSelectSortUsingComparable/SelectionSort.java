@@ -1,5 +1,7 @@
 package will.zhang.basic.BSelectSortUsingComparable;
 
+import will.zhang.util.SortTestHelper;
+
 import java.util.Arrays;
 
 /**
@@ -12,23 +14,16 @@ public class SelectionSort {
     /**
      * 不允许产生实例
      */
-    private SelectionSort() {
-    }
+    private SelectionSort() {}
 
     public static void sort(Comparable[] arr){
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if(arr[j].compareTo(arr[i]) < 0){
-                    swap(arr, i, j);
+                    SortTestHelper.swap(arr, i, j);
                 }
             }
         }
-    }
-
-    private static void swap(Object[] arr, int i, int j){
-        Object t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
     }
 
     public static void main(String[] args) {

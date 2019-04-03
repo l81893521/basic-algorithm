@@ -37,6 +37,5 @@ public class SelectionSort {
         //测试选择排序的性能
         Integer[] arr = SortTestHelper.generateRandomArray(10000, 0, 100000);
         SortTestHelper.testSortPerformance("will.zhang.basic.FInsertionSort.SelectionSort", arr);
-//        System.out.println(Arrays.toString(arr));
     }
 }

@@ -21,21 +21,15 @@ public class SelectionSort {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j].compareTo(arr[i]) < 0){
-                    swap(arr, i, j);
+                    SortTestHelper.swap(arr, i, j);
                 }
             }
         }
     }
 
-    private static void swap(Object[] arr, int i, int j){
-        Object t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
-    }
-
     public static void main(String[] args) {
         //测试选择排序的性能
-        Integer[] arr = SortTestHelper.generateRandomArray(10000, 4, 77);
+        Integer[] arr = SortTestHelper.generateRandomArray(20000, 0, 20000);
         SortTestHelper.testSortPerformance("will.zhang.basic.DSelectionSortDetectPerformance.SelectionSort", arr);
     }
 }

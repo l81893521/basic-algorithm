@@ -12,8 +12,7 @@ public class InsertionSort {
     /**
      * 不允许产生实例
      */
-    private InsertionSort() {
-    }
+    private InsertionSort() {}
 
     /**
      * 经过优化的InsertionSort
@@ -35,8 +34,19 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int N = 20000;
-        Integer[] arr = SortTestHelper.generateRandomArray(N, 0, N);
-        SortTestHelper.testSortPerformance("will.zhang.basic.FInsertionSort.InsertionSort", arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("对随机数组进行测试, size = " + N + " , 数字大小范围 [0, " + N + "]");
+        Integer[] arr1 = SortTestHelper.generateRandomArray(N, 0, N);
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+
+        SortTestHelper.testSortPerformance("will.zhang.basic.EInsertionSort.SelectionSort", arr1);
+        SortTestHelper.testSortPerformance("will.zhang.basic.EInsertionSort.InsertionSort", arr2);
+        SortTestHelper.testSortPerformance("will.zhang.basic.FInsertionSort.InsertionSort", arr3);
+
+        //第二步 测试高有序性的数据
+        int swapTime = 10;
+        Integer[] arr4 = SortTestHelper.generateNearlyOrderedArray(N, swapTime);
+        System.out.println("对接近有序的数组进行测试, size = " + N );
+        SortTestHelper.testSortPerformance("will.zhang.basic.FInsertionSort.InsertionSort", arr4);
     }
 }
