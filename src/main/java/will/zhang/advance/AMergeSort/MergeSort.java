@@ -13,12 +13,10 @@ public class MergeSort {
     /**
      * 不允许产生实例
      */
-    private MergeSort() {
-    }
+    private MergeSort() {}
 
     public static void sort(Comparable[] arr){
         int n = arr.length;
-
         mergeSort(arr, 0, n-1);
     }
 
@@ -33,7 +31,7 @@ public class MergeSort {
         //不断进行二分,直到每个数组只剩下一个元素的时候则退出(只剩下1个元素的数组,就已经是有序)
         if(l >= r) return;
 
-        //计算出中点位置(注意如果l+r有可能发生溢出的错误)
+        //计算出中点位置(注意如果l+r有可能发生溢出的错误) l+(r-l)/2
         int mid = (l+r)/2;
 
         //把数组分开一半,分别对两边进行排序
@@ -77,12 +75,12 @@ public class MergeSort {
 
 
     public static void main(String[] args) {
-        int N = 8;
+        int N = 1000000;
+        System.out.println("对随机数组进行测试, size = " + N + " , 数字大小范围 [0, " + N + "]");
         Integer[] arr = SortTestHelper.generateRandomArray(N, 0, N);
         // 可以在1秒内轻松处理100万以上的数据
         // 但是不要使用O(n^2)的算法来处理那么大的数据,如SelectionSort, InsertionSort或BubbleSort
         // 否则会等死人
         SortTestHelper.testSortPerformance("will.zhang.advance.AMergeSort.MergeSort", arr);
-//        System.out.println(Arrays.toString(arr));
     }
 }

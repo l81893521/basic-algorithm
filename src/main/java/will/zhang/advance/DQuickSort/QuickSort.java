@@ -33,7 +33,6 @@ public class QuickSort {
 
         quickSort(arr, l, p-1);
         quickSort(arr, p+1, r);
-
     }
 
     /**
@@ -61,13 +60,17 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int N = 100000;
-        Integer[] arr = SortTestHelper.generateRandomArray(N, 0, N);
-        SortTestHelper.testSortPerformance("will.zhang.advance.DQuickSort.QuickSort", arr);
-
+        int N = 1000000;
+        System.out.println("对随机数组进行测试, size = " + N + " , 数字大小范围 [0, " + N + "]");
+        Integer[] arr1 = SortTestHelper.generateRandomArray(N, 0, N);
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
+        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr1);
+        SortTestHelper.testSortPerformance("will.zhang.advance.DQuickSort.QuickSort", arr2);
         //生成一个接近于有序的数组
         int swap = 100;
-        Integer[] arr1 = SortTestHelper.generateNearlyOrderedArray(N, swap);
+        System.out.println("对接近有序的数组进行测试, size = " + N );
+        Integer[] arr3 = SortTestHelper.generateNearlyOrderedArray(N, swap);
+        Integer[] arr4 = Arrays.copyOf(arr3, arr3.length);
         /**
          * 可以看到如果一个接近于有序的数组,使用快速排序,所消耗的时间是惊人的
          * 因为当一个接近于有序的数组,每次都选择最左侧的元素作为标定点
@@ -76,6 +79,7 @@ public class QuickSort {
          *
          * 注意:如果出现stackOverFlowError,请调大堆栈大小-Xss
          */
-        SortTestHelper.testSortPerformance("will.zhang.advance.DQuickSort.QuickSort", arr1);
+        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr3);
+        SortTestHelper.testSortPerformance("will.zhang.advance.DQuickSort.QuickSort", arr4);
     }
 }

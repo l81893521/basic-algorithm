@@ -14,8 +14,7 @@ public class QuickSort {
     /**
      * 不允许产生实例
      */
-    private QuickSort() {
-    }
+    private QuickSort() {}
 
     public static void sort(Comparable[] arr){
         quickSort(arr, 0, arr.length-1);
@@ -89,18 +88,48 @@ public class QuickSort {
 
 
     public static void main(String[] args) {
-        int N = 100000;
-        //生成一个随机数组
-        Integer[] arr = SortTestHelper.generateRandomArray(N, 0, N);
-        SortTestHelper.testSortPerformance("will.zhang.advance.EQuickSortDealWithNearOrderedArray.QuickSort", arr);
+        int N = 1000000;
+        System.out.println("对随机数组进行测试, size = " + N + " , 数字大小范围 [0, " + N + "]");
+        Integer[] arr1 = SortTestHelper.generateRandomArray(N, 0, N);
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr1);
+        SortTestHelper.testSortPerformance("will.zhang.advance.FQuickSort2Ways.QuickSort", arr2);
+        long startTime = System.currentTimeMillis();
+        Arrays.sort(arr3);
+        long endTime = System.currentTimeMillis();
+        System.out.println("JavaQuickSork:" + (endTime - startTime) + "ms");
 
         //生成一个接近于有序的数组
         int swap = 100;
-        Integer[] arr1 = SortTestHelper.generateNearlyOrderedArray(N, swap);
-        SortTestHelper.testSortPerformance("will.zhang.advance.EQuickSortDealWithNearOrderedArray.QuickSort", arr1);
-
+        Integer[] arr11 = SortTestHelper.generateNearlyOrderedArray(N, swap);
+        Integer[] arr12 = Arrays.copyOf(arr11, arr11.length);
+        Integer[] arr13 = Arrays.copyOf(arr11, arr11.length);
+        System.out.println("对接近有序的数组进行测试, size = " + N );
+        /**
+         * 经过优化后, 排序接近于有序的数组也不会退化到N方级别
+         */
+        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr11);
+        SortTestHelper.testSortPerformance("will.zhang.advance.FQuickSort2Ways.QuickSort", arr12);
+        startTime = System.currentTimeMillis();
+        Arrays.sort(arr13);
+        endTime = System.currentTimeMillis();
+        System.out.println("JavaQuickSork:" + (endTime - startTime) + "ms");
         //生成一个范围很小的数组
-        Integer[] arr2 = SortTestHelper.generateRandomArray(N, 0, 10);
-        SortTestHelper.testSortPerformance("will.zhang.advance.FQuickSort2Ways.QuickSort", arr2);
+        Integer[] arr21 = SortTestHelper.generateRandomArray(N, 0, 10);
+        Integer[] arr22 = Arrays.copyOf(arr21, arr21.length);
+        Integer[] arr23 = Arrays.copyOf(arr21, arr21.length);
+        System.out.println("对范围很小(具有大量重复元素)的数组进行测试, size = " + N );
+        /**
+         * 但是又出现了另外一个问题
+         * 当数组范围过小, 意味着有大量重复元素情况下
+         * 算法又退回到O(n2)级别了
+         */
+        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr21);
+        SortTestHelper.testSortPerformance("will.zhang.advance.FQuickSort2Ways.QuickSort", arr22);
+        startTime = System.currentTimeMillis();
+        Arrays.sort(arr23);
+        endTime = System.currentTimeMillis();
+        System.out.println("JavaQuickSork:" + (endTime - startTime) + "ms");
     }
 }

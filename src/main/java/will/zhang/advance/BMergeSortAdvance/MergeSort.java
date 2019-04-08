@@ -105,12 +105,14 @@ public class MergeSort {
 
 
     public static void main(String[] args) {
-        int N = 10;
+        int N = 1000000;
+        System.out.println("对随机数组进行测试, size = " + N + " , 数字大小范围 [0, " + N + "]");
         Integer[] arr = SortTestHelper.generateRandomArray(N, 0, N);
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
         // 可以在1秒内轻松处理100万以上的数据
         // 但是不要使用O(n^2)的算法来处理那么大的数据,如SelectionSort, InsertionSort或BubbleSort
         // 否则会等死人
-        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr);
-        System.out.println(Arrays.toString(arr));
+        SortTestHelper.testSortPerformance("will.zhang.advance.AMergeSort.MergeSort", arr);
+        SortTestHelper.testSortPerformance("will.zhang.advance.BMergeSortAdvance.MergeSort", arr2);
     }
 }
