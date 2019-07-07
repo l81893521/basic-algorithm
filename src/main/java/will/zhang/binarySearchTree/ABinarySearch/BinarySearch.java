@@ -28,15 +28,15 @@ public class BinarySearch {
             /*
             找出中间点, 但是请勿使用(l+r)/2这个方法, 因为这会引起溢出问题
              */
-            int p = l + (r - l) / 2;
+            int mid = l + (r - l) / 2;
             //如果找到结果直接返回
-            if(target.compareTo(arr[p]) == 0){
-                return p;
+            if(target.compareTo(arr[mid]) == 0){
+                return mid;
             }
-            if(target.compareTo(arr[p]) > 0){
-                l = p + 1;
+            if(target.compareTo(arr[mid]) > 0){
+                l = mid + 1;
             }else{
-                r = p - 1;
+                r = mid - 1;
             }
         }
         //如果找不到则返回-1
