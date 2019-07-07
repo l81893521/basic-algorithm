@@ -73,10 +73,11 @@ public class QuickSort {
             while(i <= j && arr[i].compareTo(v) < 0) i++;
             while(j >= i && arr[j].compareTo(v) > 0) j--;
 
-            SortTestHelper.swap(arr, i, j);
             if(i > j){
                 break;
             }
+            SortTestHelper.swap(arr, i, j);
+
             i++;
             j--;
         }
