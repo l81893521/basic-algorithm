@@ -24,7 +24,7 @@ public class BinarySearch {
         int l = 0;
         int r = arr.length - 1;
 
-        while(l < r){
+        while(l <= r){
             /*
             找出中间点, 但是请勿使用(l+r)/2这个方法, 因为这会引起溢出问题
              */
