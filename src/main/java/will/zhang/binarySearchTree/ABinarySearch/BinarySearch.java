@@ -25,17 +25,17 @@ public class BinarySearch {
         int r = arr.length - 1;
 
         while(l <= r){
-            /*
-            找出中间点, 但是请勿使用(l+r)/2这个方法, 因为这会引起溢出问题
-             */
+            //找出中间点, 但是请勿使用(l+r)/2这个方法, 因为这会引起溢出问题
             int mid = l + (r - l) / 2;
             //如果找到结果直接返回
             if(target.compareTo(arr[mid]) == 0){
                 return mid;
             }
             if(target.compareTo(arr[mid]) > 0){
+                //在arr[mid+1...r]继续寻找
                 l = mid + 1;
             }else{
+                //在arr[l...mid-1]继续寻找
                 r = mid - 1;
             }
         }
