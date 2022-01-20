@@ -18,11 +18,14 @@ public class SelectionSort {
 
     public static void sort(Comparable[] arr){
         for (int i = 0; i < arr.length; i++) {
+            // 寻找[i, arr.length]区间里的最小值
+            int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
-                if(arr[j].compareTo(arr[i]) < 0){
-                    SortTestHelper.swap(arr, i, j);
+                if(arr[j].compareTo(arr[minIndex]) < 0){
+                    minIndex = j;
                 }
             }
+            SortTestHelper.swap(arr, i, minIndex);
         }
     }
 
