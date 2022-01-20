@@ -17,14 +17,17 @@ public class SelectionSort {
      * @param arr
      */
     public static void sort(int[] arr){
-        // 寻找[i, arr.length]区间里的最小值
+
         for (int i = 0; i < arr.length; i++) {
+            // 寻找[i, arr.length]区间里的最小值
+            int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
                 //遇到比arr[i]小的则交换
-                if(arr[j] < arr[i]){
-                    swap(arr, i, j);
+                if(arr[j] < arr[minIndex]){
+                    minIndex = j;
                 }
             }
+            swap(arr, i, minIndex);
         }
     }
 
